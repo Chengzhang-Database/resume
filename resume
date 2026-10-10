@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>简历 · HR一号位</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f5f5f7;
+      --card-bg: rgba(255, 255, 255, 0.72);
+      --card-border: rgba(255, 255, 255, 0.5);
+      --text-primary: #1d1d1f;
+      --text-secondary: #4b4b4f;
+      --text-tertiary: #8e8e93;
+      --accent: #0071e3;
+      --accent-gradient: linear-gradient(135deg, #0071e3 0%, #40a9ff 50%, #6c5ce7 100%);
+      --accent-soft: rgba(0, 113, 227, 0.08);
+      --border-light: rgba(0, 0, 0, 0.06);
+      --radius-xl: 36px;
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --shadow-soft: 0 4px 30px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+      --shadow-hover: 0 20px 50px rgba(0, 0, 0, 0.06), 0 2px 10px rgba(0, 0, 0, 0.02);
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 15% 10%, rgba(0, 113, 227, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 85% 90%, rgba(108, 92, 231, 0.04) 0%, transparent 40%);
+      background-attachment: fixed;
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: 2.5rem 1.5rem 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .resume {
+      max-width: 960px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* ========== 卡片基础 ========== */
+    .card {
+      position: relative;
+      background: var(--card-bg);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem 2.5rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--card-border);
+      transition: box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-25deg);
+      transition: left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .card:hover::before {
+      left: 125%;
+      opacity: 1;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    /* ========== 头部 ========== */
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.25rem;
+      padding-bottom: 0.25rem;
+    }
+
+    .header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .header-left .name-line {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+    }
+
+    .header-left .name-line h1 {
+      font-family: var(--font-display);
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #1d1d1f 0%, #4b4b4f 50%, #0071e3 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% 200%;
+      animation: gradientShift 6s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* ===== HR一号位 徽章 —— 重新设计 ===== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #fff;
+      padding: 0.4rem 1.1rem 0.4rem 0.9rem;
+      border-radius: 40px;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0071e3 0%, #40a9ff 40%, #6c5ce7 100%);
+      box-shadow: 
+        0 4px 16px rgba(0, 113, 227, 0.3),
+        0 1px 4px rgba(108, 92, 231, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .badge:hover {
+      transform: translateY(-1px);
+      box-shadow: 
+        0 6px 24px rgba(0, 113, 227, 0.4),
+        0 2px 8px rgba(108, 92, 231, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    /* 徽章前的脉冲光点 */
+    .badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.9);
+      animation: pulseWhite 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulseWhite {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* 徽章扫光 */
+    .badge::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.7) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-25deg);
+      animation: badgeShine 3.5s ease-in-out infinite;
+    }
+
+    @keyframes badgeShine {
+      0% { left: -75%; }
+      60%, 100% { left: 125%; }
+    }
+
+    .header-left .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .header-left .meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .header-left .meta .dot {
+      width: 4px;
+      height: 4px;
+      background: #c7c7cc;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* ========== 求职意向 ========== */
+    .intent {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 2.5rem;
+      align-items: stretch;
+      justify-content: space-between;
+      padding: 2rem 2.5rem;
+    }
+
+    .intent-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      position: relative;
+    }
+
+    .intent-item .label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+    }
+
+    .intent-item .value {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+    }
+
+    /* 目标职位 HR一号位 的强调样式 */
+    .intent-item .value.role-highlight {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% 200%;
+      animation: gradientShift 5s ease infinite;
+    }
+
+    .intent-item .value.small {
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+      max-width: 340px;
+      line-height: 1.5;
+    }
+
+    .intent-divider {
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--border-light), transparent);
+      align-self: stretch;
+    }
+
+    /* ========== 章节标题 ========== */
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .section-title::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--accent-gradient);
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 12px rgba(0, 113, 227, 0.4);
+      animation: pulseDot 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+
+    /* ========== 工作经历 ========== */
+    .job {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 1.75rem;
+    }
+
+    .job:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .job-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem 1rem;
+    }
+
+    .job-header .company {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    .job-header .company .desc {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text-tertiary);
+      margin-left: 0.5rem;
+      letter-spacing: 0;
+    }
+
+    .job-header .date {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+      padding: 0.2rem 0.75rem;
+      background: rgba(0, 0, 0, 0.02);
+      border-radius: 40px;
+    }
+
+    /* 工作经历中的 HR一号位 标题 —— 统一使用渐变+徽章感 */
+    .job-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .job-title .role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: #fff;
+      padding: 0.25rem 0.9rem 0.25rem 0.7rem;
+      border-radius: 40px;
+      background: linear-gradient(135deg, #0071e3 0%, #40a9ff 50%, #6c5ce7 100%);
+      box-shadow: 0 2px 10px rgba(0, 113, 227, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .job-title .role-badge::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.9);
+      animation: pulseWhite 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .job-title .role-badge::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-25deg);
+      animation: badgeShine 3.5s ease-in-out infinite;
+    }
+
+    .job-title .report {
+      font-weight: 400;
+      color: var(--text-tertiary);
+      font-size: 0.85rem;
+    }
+
+    /* ========== 列表 ========== */
+    .list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      padding-left: 0.25rem;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: 1.25rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.65rem;
+      width: 5px;
+      height: 5px;
+      background: var(--accent-gradient);
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    .list li strong {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .list.tight {
+      gap: 0.45rem;
+    }
+
+    /* ========== 早期经历 ========== */
+    .early-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .early-item {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.4rem 1.2rem;
+      font-size: 0.95rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-sm);
+      transition: background 0.25s ease;
+    }
+
+    .early-item:hover {
+      background: rgba(0, 0, 0, 0.015);
+    }
+
+    .early-item .year {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      min-width: 105px;
+    }
+
+    .early-item .role {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .early-item .company {
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* ========== 技能 ========== */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem 2.5rem;
+    }
+
+    .skill-group {
+      flex: 1 1 220px;
+      min-width: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .skill-group .group-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-tertiary);
+      margin-bottom: 0.1rem;
+    }
+
+    .skill-group .group-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      position: relative;
+      background: rgba(0, 0, 0, 0.03);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      padding: 0.35rem 0.95rem;
+      border-radius: 40px;
+      border: 1px solid transparent;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      white-space: nowrap;
+      cursor: default;
+      overflow: hidden;
+    }
+
+    .skill-tag::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
+      transition: left 0.5s ease;
+    }
+
+    .skill-tag:hover::after {
+      left: 100%;
+    }
+
+    .skill-tag:hover {
+      background: rgba(0, 0, 0, 0.06);
+      transform: translateY(-1px);
+    }
+
+    .skill-tag.accent {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-color: rgba(0, 113, 227, 0.1);
+      font-weight: 600;
+    }
+
+    .skill-tag.accent:hover {
+      background: rgba(0, 113, 227, 0.12);
+    }
+
+    /* ========== 底部 ========== */
+    .footer-note {
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+      background: linear-gradient(135deg, #8e8e93, #0071e3, #8e8e93);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: gradientMove 4s linear infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 720px) {
+      body {
+        padding: 1.5rem 1rem 3rem;
+      }
+
+      .card {
+        padding: 1.75rem 1.5rem;
+        border-radius: var(--radius-md);
+      }
+
+      .header-left .name-line h1 {
+        font-size: 1.9rem;
+      }
+
+      .intent {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem;
+        gap: 1.25rem;
+      }
+
+      .intent-divider {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--border-light), transparent);
+        align-self: auto;
+      }
+
+      .intent-item .value.small {
+        max-width: 100%;
+      }
+
+      .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .early-item {
+        flex-direction: column;
+        gap: 0.15rem;
+        padding: 0.5rem 0.75rem;
+      }
+
+      .early-item .year {
+        min-width: auto;
+      }
+
+      .skills-grid {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .skill-group {
+        min-width: 100%;
+      }
+
+      .job-title {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* 渐入动画 */
+    .card {
+      animation: fadeInUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.0s; }
+    .card:nth-child(2) { animation-delay: 0.08s; }
+    .card:nth-child(3) { animation-delay: 0.16s; }
+    .card:nth-child(4) { animation-delay: 0.24s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    ::selection {
+      background: rgba(0, 113, 227, 0.2);
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body>
+  <div class="resume">
+
+    <!-- 头部 -->
+    <div class="card header">
+      <div class="header-left">
+        <div class="name-line">
+          <h1>男 · 1983</h1>
+          <span class="badge">HR 一号位</span>
+        </div>
+        <div class="meta">
+          <span>现居北京</span>
+          <span class="dot"></span>
+          <span>统招本科 · 会计学</span>
+          <span class="dot"></span>
+          <span>河南科技大学 · 洛阳</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 求职意向 -->
+    <div class="card intent">
+      <div class="intent-item" style="flex: 1.2;">
+        <div class="label">目标职位</div>
+        <div class="value role-highlight">HR 一号位</div>
+        <div class="value small" style="font-size:0.82rem; margin-top:0.1rem;">HRD / HRM / HR Head / HRBP</div>
+      </div>
+      <div class="intent-divider"></div>
+      <div class="intent-item" style="flex: 1.6;">
+        <div class="label">核心优势</div>
+        <div class="value small" style="max-width:400px;">
+          独立负责人力资源全盘，擅长初创招聘破局，同时承担行政、财务对接、跨境合规等综合事务。
+        </div>
+      </div>
+      <div class="intent-divider"></div>
+      <div class="intent-item" style="flex: 1.3;">
+        <div class="label">目标领域</div>
+        <div class="value small">AI / 数据库 / 云计算 / Infra / 具身智能</div>
+        <div class="value small" style="margin-top:0.15rem; font-size:0.8rem;">0-1 初创 · 不超过20人 · 海淀/昌平</div>
+      </div>
+    </div>
+
+    <!-- 工作经历 -->
+    <div class="card">
+      <div class="section-title">工作经历</div>
+
+      <!-- EloqData -->
+      <div class="job">
+        <div class="job-header">
+          <div class="company">
+            EloqData
+            <span class="desc">云原生数据库 · 清北系创始人</span>
+          </div>
+          <div class="date">2021.10 — 至今</div>
+        </div>
+        <div class="job-title">
+          <span class="role-badge">HR 一号位</span>
+          <span class="report">汇报对象：CEO</span>
+        </div>
+
+        <ul class="list tight" style="margin-bottom:0.75rem;">
+          <li><strong>招聘与团队搭建</strong> — 独立负责从0到1研发团队搭建，覆盖 C++ / Go / K8S / 云平台 方向全职及实习生招聘。</li>
+          <li>全职招聘：引入来自小米、百度、阿里、快手、滴普、AWS（美国）、PingCAP、知乎等十余名中高级工程师；毕业院校含北大、北航、华科、中科院、北理工、UIUC、NTU等，研究生率70%。</li>
+          <li>实习生招聘：每年稳定引入北大、中山、CMU、UniMelb、中科院计算所、北航、北理工、华东师范、上海交大（IPADS）等本硕实习生；其中2人实习一年后以校招生身份正式加入。</li>
+          <li>薪酬与研发文化：制定工程师及实习生薪酬福利方案，给予可控范围内最大自由，鼓励自驱。</li>
+        </ul>
+
+        <ul class="list tight" style="margin-bottom:0.5rem;">
+          <li><strong>人力资源全盘事务</strong> — 工资核算、个税申报、社保公积金增减员、员工关怀、员工解除、劳动合同管理、员工手册及规则制定与维护。</li>
+          <li><strong>财务与合规</strong> — 对接外部记账公司、银行、北京市商委，处理投资人问询及报表；美国/新加坡/香港公司注册及年审，美国与中国商标注册及异议，中国专利申请及续费。</li>
+        </ul>
+      </div>
+
+      <!-- 早期经历 -->
+      <div style="margin-top: 0.5rem;">
+        <div style="font-size:0.78rem; font-weight:700; color:var(--text-tertiary); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.9rem;">早期经历</div>
+        <div class="early-list">
+          <div class="early-item">
+            <span class="year">2018 — 2019</span>
+            <span class="role">人力资源总监</span>
+            <span class="company">MISSZERO</span>
+          </div>
+          <div class="early-item">
+            <span class="year">2016 — 2018</span>
+            <span class="role">集团人力资源总监</span>
+            <span class="company">NINETOWNS 集团（兼任沱沱工社 HRD）</span>
+          </div>
+          <div class="early-item">
+            <span class="year">2015 — 2016</span>
+            <span class="role">人力资源总监</span>
+            <span class="company">黄太吉</span>
+          </div>
+          <div class="early-item">
+            <span class="year">2013 — 2015</span>
+            <span class="role">HRBP</span>
+            <span class="company">云茂</span>
+          </div>
+          <div class="early-item">
+            <span class="year">2010 — 2013</span>
+            <span class="role">HRBP</span>
+            <span class="company">VANCL 凡客诚品</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 技能 -->
+    <div class="card">
+      <div class="section-title">技能与擅长</div>
+      <div class="skills-grid">
+
+        <div class="skill-group">
+          <div class="group-label">招聘与雇主品牌</div>
+          <div class="group-items">
+            <span class="skill-tag">BOSS</span>
+            <span class="skill-tag">猎聘</span>
+            <span class="skill-tag">脉脉</span>
+            <span class="skill-tag">LinkedIn</span>
+            <span class="skill-tag">拉勾</span>
+            <span class="skill-tag">牛客</span>
+            <span class="skill-tag accent">投流技巧</span>
+            <span class="skill-tag accent">研发沟通</span>
+            <span class="skill-tag">高知创始人协同</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="group-label">人事 · 财务 · 合规</div>
+          <div class="group-items">
+            <span class="skill-tag">北京/上海社保公积金</span>
+            <span class="skill-tag">个税核算</span>
+            <span class="skill-tag">人力预算</span>
+            <span class="skill-tag">财务报表阅读</span>
+            <span class="skill-tag">VIE架构</span>
+            <span class="skill-tag">美/新/港公司注册年审</span>
+            <span class="skill-tag">商标异议答辩</span>
+            <span class="skill-tag">专利续费</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="group-label">AI 与工具</div>
+          <div class="group-items">
+            <span class="skill-tag accent">AI Agent 招聘渠道</span>
+            <span class="skill-tag">前端静态页面（AI辅助）</span>
+            <span class="skill-tag">招聘文案优化</span>
+            <span class="skill-tag">平面设计（AI辅助）</span>
+            <span class="skill-tag">Ubuntu 维护</span>
+            <span class="skill-tag">Notion / Project</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+      独立 · 下场 · 破局
+    </div>
+
+  </div>
+</body>
+</html>
